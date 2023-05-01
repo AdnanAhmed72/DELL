@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>JS For Beginners</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <header>
+      <h1>JS For Beginners</h1>
+    </header>
+
+    <section class="container">
+      <form onsubmit="saveToLocalStrorage(event)" id="my-form">
+        <h1>Add User</h1>
+        <div class="msg"></div>
+        <div>
+          <label for="name">Name:</label>
+          <input type="text" name='name' required>
+        </div>
+        <div>
+          <label for="email">Email:</label>
+          <input type="text" name="email" required>
+        </div>
+        <input class="btn" type="submit" value="Submmit">
+      </form>
+
+      <ul id="users"></ul>
+
+      <!-- <ul class="items">
+        <li class="item">Item 1</li>
+        <li class="item">Item 2</li>
+        <li class="item">Item 3</li>
+      </ul> -->
+    </section>   
+    <ul id="listofitems"></ul> 
+    <script>
+      function saveToLocalStrorage(event){
+        event.preventDefault();
+        const name = event.target.name.value
+        const email = event.target.email.value
+        let obj = {
+          name:name,
+          email:email
+        }
+
+        localStorage.setItem(obj.email,JSON.stringify(obj));
+        showuserdetails(obj)
+      }
+      function showuserdetails(obj){
+        const parentele = document.getElementById('listofitems');
+
+        // const childele = document.createElement('li');
+        // childele.textContent=  obj.name + ' - ' + obj.email
+        // parentele.appendChild(childele)
+        // parentele.style.textAlign ='center'
+
+        //parentele.innerHTML = `${obj.name} - ${obj.email}`
+
+        parentele.innerHTML = parentele.innerHTML + `<li>${obj.name} - ${obj.email}</li>`
+      }
+    </script>
+  </body>
+</html>
