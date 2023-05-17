@@ -18,15 +18,15 @@
         <div class="msg"></div>
         <div>
           <label for="name">Name:</label>
-          <input type="text" name='name' required>
+          <input type="text" id="name" name='name' required>
         </div>
         <div>
           <label for="email">Email:</label>
-          <input type="text" name="email" required>
+          <input type="text" id="email" name="email" required>
         </div>
         <div>
           <label for="phno">Phone Number::</label>
-          <input type="text" name="phno" required>
+          <input type="text" id="phno" name="phno" required>
         </div>
         <input class="btn" type="submit" value="Submmit">
       </form>
@@ -76,6 +76,9 @@
         var ChildEle = document.createElement('li');
         ChildEle.textContent = obj.name + ' - ' + obj.email + ' - ' + obj.phoneNumber;
 
+        document.getElementById('name').value = '';
+        document.getElementById('email').value = '';
+        document.getElementById('phno').value = '';
         // var delBtn = document.createElement('button');
         // delBtn.textContent = 'Delete';
 
@@ -85,10 +88,35 @@
         delBtn.onclick = () => {
           localStorage.removeItem(obj.email);
           parentEle.removeChild(ChildEle);
+
+          document.getElementById('name').value = '';
+          document.getElementById('email').value = '';
+          document.getElementById('phno').value = '';
         }
 
+        //Edit button
+        var editBtn = document.createElement('input');
+        editBtn.type='button';
+        editBtn.value = 'Edit';
+
+        editBtn.onclick = () => {
+          localStorage.removeItem(obj.email);
+          parentEle.removeChild(ChildEle);
+
+          document.getElementById('name').value = obj.name;
+          document.getElementById('email').value = obj.email;
+          document.getElementById('phno').value = obj.phoneNumber;
+        }
+
+
         ChildEle.appendChild(delBtn);
+
+        ChildEle.appendChild(editBtn);
+
         parentEle.appendChild(ChildEle);
+
+        
+
 
       }
     </script>
