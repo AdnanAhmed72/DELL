@@ -20,6 +20,17 @@ function saveToLocalStorage(event){
     document.getElementById('category').value = '';
 }
 
+window.addEventListener('DOMContentLoaded',()=>{
+    axios.get('https://crudcrud.com/api/c966b978fa414a5fa3d028c7db0022ab/AppData')
+        .then((response)=>{
+            console.log(response)
+
+            for(let i=0;i<response.data.length;i++){
+                showOnScreen(response.data[i])
+            }
+        })
+        .catch(err => console.log(err))
+})
 function showOnScreen(obj){
     var li = document.createElement('li');
     li.innerHTML = `${obj.Expenseamount} - ${obj.Description} - ${obj.Category}  `;
